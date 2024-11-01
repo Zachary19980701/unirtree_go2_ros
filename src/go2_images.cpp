@@ -42,16 +42,12 @@ int main(int argc, char** argv)
                 sensor_msgs::Image ros_image;
                 cv_bridge::CvImage cv_image;
                 cv_image.image = image;
-                cv_image.encoding = "bgr8";  // or "rgb8", depends on the image format
-                int width = cv_image.image.cols;  // 图像宽度
-                int height = cv_image.image.rows;  // 图像高度
+                cv_image.encoding = "bgr8"; 
 
                 cv_image.toImageMsg(ros_image);
 
-                // Publish the image
                 image_pub.publish(ros_image);
                 // ROS_INFO("Image published successfully.");
-                // ROS_INFO("Received an image with size: %d x %d", width, height);
             } else {
                 ROS_ERROR("Failed to decode image.");
             }
